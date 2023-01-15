@@ -4,12 +4,13 @@
 
 Hello.  My name is Stephen Cole and I'm a trainer here at Cloud Academy with a lot of experience with AWS exams.
 
-<img src="./images/Screenshot_2023-01-15_at_5.07.48_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.07.48_PM.png" width="50%" />
+
 
 So far, I've earned nine AWS certifications over the years including the one I want to talk about today, the AWS Certified Machine Learning - Specialty exam.
 Before I start, I need to be clear about something.
 
-<img src="./images/Screenshot_2023-01-15_at_5.07.58_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.07.58_PM.png" width="50%" />
 
 
 As part of the AWS testing process, everyone has to agree to a code of conduct and, as part of this agreement, we are required to keep the specifics of the exam confidential.
@@ -40,13 +41,14 @@ I feel like I should say something here about deployments.  However, I'm not sur
 ## SageMaker
 
 It's important to know how to manage deployments, how `SageMaker` hosted endpoints work, and how to update endpoints that are already in production.
-<img src="./images/Screenshot_2023-01-15_at_5.08.09_PM.png" width="80%" />
+
+<img src="./images/Screenshot_2023-01-15_at_5.08.09_PM.png" width="50%" />
 
 As you study the details about hosted endpoints, be sure to pay attention to Amazon Elastic Inference and when it can or can't be added to a SageMaker instance.  
 
-<img src="./images/Screenshot_2023-01-15_at_5.08.19_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.08.19_PM.png" width="50%" />
 
-<img src="./images/Screenshot_2023-01-15_at_5.08.32_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.08.32_PM.png" width="50%" />
 
 You should know--at a high level--of all the available SageMaker algorithms, what they do, and their related use cases.
 
@@ -65,18 +67,18 @@ If you've not figured it out by now, knowing Amazon SageMaker is critically impo
 
 Another third of the exam's questions were solely about Machine Learning and had nothing to do with the AWS cloud or related technologies.  
 
-<img src="./images/Screenshot_2023-01-15_at_5.09.07_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.09.07_PM.png" width="50%" />
 
 For me, these were the hardest questions because, even though I've helped people run machine learning workloads over the years, I am not a data scientist.
 
 The subdomain in the exam blueprint says you must be able to select and justify the appropriate machine learning approach for a given business problem.
 They were not kidding.
 
-<img src="./images/Screenshot_2023-01-15_at_5.09.32_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.09.32_PM.png" width="50%" />
 
 In order to pass this exam, you must have experience choosing and tuning machine learning algorithms, working with neural networks, training and deploying machine learning jobs, and interpreting the output of those jobs.
 
-<img src="./images/Screenshot_2023-01-15_at_5.09.48_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.09.48_PM.png" width="50%" />
 
 
 It's important to be comfortable with concepts like imputation, one-hot encoding, and data normalization.
@@ -87,7 +89,7 @@ Another observation is that, in another AWS exam, the one covering Data Analytic
 
 In the Machine Learning exam, I was given some visualizations and asked what they meant.  
 
-<img src="./images/Screenshot_2023-01-15_at_5.10.02_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.10.02_PM.png" width="50%" />
 
 To me, this reinforced the idea that AWS exams are designed to validate the ability to do the work.
 
@@ -99,12 +101,12 @@ You'll be given a scenario and be asked which distribution would best describe i
 
 The third category of questions involve using the AWS cloud and have nothing to do with Machine Learning directly.
 
-<img src="./images/Screenshot_2023-01-15_at_5.10.12_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.10.12_PM.png" width="50%" />
 
 They might describe a machine learning problem but what they're asking you to do is know and understand the architecture required inside AWS to support Machine Learning workloads.
 These are services such as S3, Athena, Lambda, Glue, Kinesis Data Streams, Kinesis Data Firehose, Kinesis Data Analytics, IAM, VPC endpoints, KMS, and container orchestration with ECS or EKS.
 
-<img src="./images/Screenshot_2023-01-15_at_5.10.20_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.10.20_PM.png" width="50%" />
 
 Years ago, I started my journey into the AWS cloud as a solutions architect.  So, I have had lots of experience working with and securing Amazon S3.  
 
@@ -114,7 +116,7 @@ However, when working with Machine Learning, data moves often and to many places
 
 Not just encryption but encryption in flight, working with VPC endpoints, and resource policies.
 
-<img src="./images/Screenshot_2023-01-15_at_5.30.31_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.30.31_PM.png" width="50%" />
 
 You will want a basic understanding of container orchestration with ECS or EKS.  Just like any architecture issue, there are ways to optimize containers for cost, security, and ease of use.
 
@@ -124,19 +126,19 @@ In hindsight, having these types of questions made sense to me.  It's not just r
 Oh, before I forget; one last thing about AWS-only questions.  
 I wish I knew, exactly, how to phrase it.  AWS Lambda is important.  
 
-<img src="./images/Screenshot_2023-01-15_at_5.30.53_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.30.53_PM.png" width="50%" />
 
 
 
 However, when it comes to Machine Learning, there's a time and place where Lambda functions are the best tool for the job.  However, sometimes, they're not appropriate at all.
 
-<img src="./images/Screenshot_2023-01-15_at_5.31.15_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.31.15_PM.png" width="50%" />
 
 In the Machine Learning exam, a Lambda function can be a distractor as just easily as it can be a valid answer.
 Just like in the associate-level exams--and, I suppose, to an extent--the professional level ones, you have to pay attention to the actual question being asked.  It probably seems silly to say this out loud.  
 However, it's easy to start reading a question and make assumptions.
 
-<img src="./images/Screenshot_2023-01-15_at_5.31.26_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.31.26_PM.png" width="50%" />
 
 When reading, pay attention to that last sentence before the possible options are presented.  You might start to infer what's being asked and miss the real question.  
 That is, are you being asked what approach is the simplest, takes the least amount of effort, has a high level of accuracy, or will improve performance?
@@ -146,44 +148,44 @@ I have a bit of general advice about AWS certification that I want to share.
 
 Have another AWS certification before you take this exam.
 
-<img src="./images/Screenshot_2023-01-15_at_5.31.32_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.31.32_PM.png" width="50%" />
 
 I want to say that again.  The Certified Machine Learning - Specialty exam should NOT be your first AWS exam.  
 If you do not have an AWS certification already, start your journey to the Certified Machine Learning - Specialty certification by preparing for and passing the AWS Cloud Practitioner exam.
 
-<img alt="" src="./images/Screenshot_2023-01-15_at_5.31.46_PM.png" width="80%" />
+<img alt="" src="./images/Screenshot_2023-01-15_at_5.31.46_PM.png" width="50%" />
 
 
 While AWS has publicly said that their exams are not designed to trick people with language, my experience makes me believe otherwise.  
 
-<img src="./images/Screenshot_2023-01-15_at_5.32.05_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.32.05_PM.png" width="50%" />
 
 One of those things I've learned from all of the exams I've taken is that there's a certain writing style to the questions and possible answers.
 
-<img src="./images/Screenshot_2023-01-15_at_5.32.20_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.32.20_PM.png" width="50%" />
 
 Getting used to the language used in the exams can only happen by taking an exam.  So, at a minimum, prepare for--and take--the Cloud Practitioner exam.  
 
 In doing this, you'll have a solid understanding of how questions are written and you'll be better prepared to answer general questions about AWS services.
 
-<img src="./images/Screenshot_2023-01-15_at_5.32.30_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.32.30_PM.png" width="50%" />
 
 
 
 Another reason involves money.  If you take the Cloud Practitioner exam and pass it, you'll get a discount on your next AWS exam.
 
-<img src="./images/Screenshot_2023-01-15_at_5.32.58_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.32.58_PM.png" width="50%" />
 
 The Cloud Practitioner exam costs $100 US dollars and the Machine Learning Speciality exam costs $300.  Paying the full price, the total would be $400 USD.
 However, if you pass the Cloud Practitioner--or any AWS--exam you will get a 50% discount on your next certification exam.  
 
-<img src="./images/Screenshot_2023-01-15_at_5.33.20_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.33.20_PM.png" width="50%" />
 
-<img src="./images/Screenshot_2023-01-15_at_5.33.41_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.33.41_PM.png" width="50%" />
 
 That 50% discount turns a $300 exam into $150.  Assuming you pass them, the total for both exams is $250 dollars.  A total savings of $150 USD and still $50 less than the specialty exam alone.  
 
-<img src="./images/Screenshot_2023-01-15_at_5.33.56_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.33.56_PM.png" width="50%" />
 
 As a bonus, you'll get a free 20 question practice exam from AWS.
 If you put the AWS exams on a scale that measures their difficulty level, the specialty-level exams sit about halfway between the associate level exams and the professional ones.
@@ -202,7 +204,7 @@ It's much harder, I think to eliminate two wrong answers.  More than once, howev
 My sense of humor being what it is, it almost feels like comic relief at times.
 There's a lot to this exam and, as I said already, it will test you on your understanding of Machine Learning.  
 
-<img src="./images/Screenshot_2023-01-15_at_5.34.10_PM.png" width="80%" />
+<img src="./images/Screenshot_2023-01-15_at_5.34.10_PM.png" width="50%" />
 
 My past work supporting machine learning workloads was instrumental in my passing the exam and getting the certification.
 
