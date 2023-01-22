@@ -4,12 +4,12 @@ Welcome back. In this lecture, we begin by reviewing our demonstration of our en
 
 <img src="./images/Screenshot_2023-01-21_at_11.52.35_AM.png" width="75%" />
 
-### Part One
+## Part One
 
 In part one, we'll download a sample census dataset, from the UCI Public Machine Learning repository. Next, we'll create a brand new S3 bucket. Then, we'll upload the contents of the census dataset into this bucket. This will complete the first part of our demo.
 <img src="./images/Screenshot_2023-01-21_at_11.42.52_AM.png" width="75%" />
 
-### Part Two
+## Part Two
 
 In part two, we'll use AWS glue to configure a new crawler, to crawl the dataset that we're hosting in our S3 bucket. Running the crawler results in a data schema being derived and stored in the data catalog. This represents the CSV file format of our census data set. Next, we'll use Amazon Athena to define a secondary table schema. We'll apply this to the glue data catalog. The reason we do this, is we want to set up an ETL job that will take our raw data, clean it, and prepare it. And then store it in this new table that we've just defined and applied through Amazon Athena.
 
@@ -17,7 +17,7 @@ In part two, we'll use AWS glue to configure a new crawler, to crawl the dataset
 
 It's important to point out that the glue data catalog represents the metadata of our data sources. The raw data that we crawl, or transform through our ETL jobs, resides in an S3 bucket, or database represented by a JDBC Connection. This will become clearer as we proceed in the demonstration. The final part of part two, is to define a glue job, or an ETL process, that takes out input dataset, which is our dataset from the UCI Machine Learning Repository. And, manipulate the data so that it's prepared and ready for our machine learning process. Which runs as a job within Spark on our EMR cluster.
 
-### Part Three
+## Part Three
 
 In part three, we lanch an EMR cluster. The cluster will be composed of one master node, and one core node. When we launch our EMR cluster, we'll configure it with both Apache Spark, and Apache Zeppelin.
 
@@ -25,7 +25,7 @@ In part three, we lanch an EMR cluster. The cluster will be composed of one mast
 
 Additionally, we'll configure the EMR cluster at launch time to have access to the glue data catalog. This will give it access to the datasets that are registered within the data catalog.
 
-### Part Four
+## Part Four
 
 Finally, in part four, we use a zeppelin notebook to run our MLlib decision tree script. Our decision tree script will train itself on the data stored in the data catalog. Running the zeppelin notebook provides us with an indirect position to the spark cluster.
 
@@ -63,7 +63,7 @@ The ETL job that we set up in part two of the demo, will filter out the unused c
 Here, we'll use curl, and download it from the command line. As you can see, the download is in progress. 
 
 ```shell
-curl https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data
+curl -o adult.data https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data
 ```
 
 It will take approximately five to 10 seconds to complete. Let's list the contents of the directory. Here, we should see the file that we have downloaded. We'll now print a sample of the records out to the screen, to give us an idea of both the structure and the contents. Here we can see the first 10 rows of our dataset. Notice in our sample data that there is no header row.
@@ -74,9 +74,7 @@ It will take approximately five to 10 seconds to complete. Let's list the conten
 
 We'll deal with this in part two. The next thing to point out is that we have 14 features, or attributes per user record, and one label. The label happens to be the last column, and again tracks whether the user earns more than 50,000 per annum, or less than 50,000 per annum.
 
-Okay, lets move on. The next thing we need to do is create a new S3 bucket to host our dataset. 
-
-<img src="./images/Screenshot_2023-01-20_at_2.00.50_PM.png" width="75%" />
+Okay, lets move on. The next thing we need to do is create a new S3 bucket to host our dataset.
 
 Lets use the AWS CLI to do so. Typing AWS S3, we can see that we have various options. We'll use the mb for make bucket. Lets consult the help for this. Here we can see the format required to make a new bucket on the S3 servers.
 
@@ -105,5 +103,7 @@ aws s3 ls  s3://cloudacademy-emr-spark-data
 ```
 
 Here we can see the contents of our bucket, and that our file has successfully been uploaded.
+
+## Summary
 
 Okay, that concludes part 1 of our demonstration. We'll now move on to part 2, where we'll use AWS glue to perform ETL on our dataset. Go ahead an close this lecture, and we'll see you shortly in the next one.
