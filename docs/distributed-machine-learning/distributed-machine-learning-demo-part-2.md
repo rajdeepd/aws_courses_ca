@@ -91,21 +91,33 @@ Here we can see the input and output formats.
 We can see the record count for how many rows are in our data set and the average record size. Scrolling down further we can see each of the columns that have been pulled out as part of the derived schema. The crawler has determined the data type for each column and provided a default column name. That creates the configuration of our crawler.
 
 We now move on and use AWS Athena to define a new table schema that will register back into our data catalog. In our browser open a new tab and navigate to the Athena service. Within Athena, the first thing we'll point out is that we can see our data catalog from the Glue service. Here we can see censusdb and our table adult_data.
-
+<figure>
 <img src="./images/Screenshot_2023-01-22_at_4.59.47_PM.png" width="75%" />
-
-<img src="./images/Screenshot_2023-01-22_at_5.14.49_PM.png" width="75%" />
-<img src="./images/Screenshot_2023-01-22_at_5.15.21_PM.png" width="75%" />
-
-<img src="./images/Screenshot_2023-01-22_at_5.15.57_PM.png" width="75%" />
-
-<figure width="80%">
-  <img src="./images/Screenshot_2023-01-22_at_5.18.16_PM.png" />
-  <figcaption>Schema of the table</figcaption>
+ <figcaption style="color:black;text-align: center;">View Data</figcaption>
 </figure>
 
+<figure>
+<img src="./images/Screenshot_2023-01-22_at_5.14.49_PM.png" width="75%" />
+ <figcaption style="color:black;text-align: center;">Query Settings</figcaption>
+</figure>
+
+<figure>
+  <img src="./images/Screenshot_2023-01-22_at_5.15.21_PM.png" width="75%" />
+ <figcaption style="color:black;text-align: center;">Athna Query Editor</figcaption>
+</figure>
+
+<figure>
+  <img src="./images/Screenshot_2023-01-22_at_5.15.57_PM.png" width="75%"/>
+  <figcaption style="color:black;text-align: center;">Results of the Query</figcaption>
+</figure>
+
+<figure>
+  <img src="./images/Screenshot_2023-01-22_at_5.18.16_PM.png" width="80%" />
+  <figcaption style="color:black;text-align: center;">Schema of the table</figcaption>
+</figure>
 
 ### Create new Table
+
 We're now going to create a new table within our censusdb database. This table will be called adult_data_clean. It will have the columns: age, workclass, education, relationship, occupation, country and income_cat for category. We'll specify the location of our new table to again be an S3 in the same bucket but in this case in a folder called clean.data.
 
 Let's now execute this create table statement by clicking the run query button. This would result in a new table being registered into the censusdb database which itself is registered within the Glue data catalog. Here you can see our query is running. Excellent, it looks like it's finished and we now have our new table registered and created back within our censusdb database.
