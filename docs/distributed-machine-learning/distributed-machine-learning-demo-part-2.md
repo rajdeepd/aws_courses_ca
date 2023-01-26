@@ -120,35 +120,128 @@ We now move on and use AWS Athena to define a new table schema that will registe
 
 We're now going to create a new table within our censusdb database. This table will be called adult_data_clean. It will have the columns: age, workclass, education, relationship, occupation, country and income_cat for category. We'll specify the location of our new table to again be an S3 in the same bucket but in this case in a folder called clean.data.
 
+```sql
+CREATE EXTERNAL TABLE IF NOT EXISTS adult_data_clean(
+    `age` bigint,
+    `workclass` string,
+    `education` string,
+    `relationship` string,
+    `occupation` string,
+    `country` string,
+    `income_cat` string
+)
+  
+LOCATION 's3://aws-ca-census-table-v2/'
+```
+
 Let's now execute this create table statement by clicking the run query button. This would result in a new table being registered into the censusdb database which itself is registered within the Glue data catalog. Here you can see our query is running. Excellent, it looks like it's finished and we now have our new table registered and created back within our censusdb database.
 
-The new table is called adult_data_clean. Let's take a look at the properties for this table. Here again we highlight the underlying location of this new table which is in our cloudacademy-emr-spark-data bucket in a new folder called clean.data. Let's now close this and jump back to our AWS Glue console where we should see our new table that we've just created show up in the data catalog.
+<img src="./images/Screenshot_2023-01-22_at_7.27.40_PM.png" width="75%" />
+
+The new table is called `adult_data_clean`. Let's take a look at the properties for this table. Here again we highlight the underlying location of this new table which is in our `cloudacademy-emr-spark-data` bucket in a new folder called clean.data. Let's now close this and jump back to our AWS Glue console where we should see our new table that we've just created show up in the data catalog.
 
 Sure enough under tables we can see our new table called adult_data_clean. Okay we're now ready to set up our ETL job. Let's click on the jobs link. First up we can see that we don't have any job defined yet. So we'll click on the add job button. This takes us into the job properties for new ETL job. Here we'll set the name to be census-job.
 
-Next we'll need to set up an IAM role. The IAM role will be used by the Glue service when it runs your ETL job. Let's jump over to the IAM console and set this up now. Within IAM click on the roles link. Next click the create role button. Here we'll choose the Glue service. This will be the service that will be allowed to use this role. Next we'll need to assign it some permissions. Click the Next: Permissions button.
+## IAM Role
+
+Next we'll need to set up an IAM role. The IAM role will be used by the Glue service when it runs your ETL job. Let's jump over to the IAM console and set this up now. Within IAM click on the roles link. 
+
+<img src="./images/Screenshot_2023-01-22_at_7.54.50_PM.png" width="75%" />
+
+Next click the create role button. 
+
+<img src="./images/Screenshot_2023-01-22_at_7.55.04_PM.png" width="75%" />
+
+Here we'll choose the Glue service. This will be the service that will be allowed to use this role. Next we'll need to assign it some permissions. Click the Next: Permissions button.
+
+<img src="./images/Screenshot_2023-01-22_at_7.55.13_PM.png" width="75%" />
+
+<img src="./images/Screenshot_2023-01-22_at_7.55.36_PM.png" width="85%" />
 
 We'll now assign permissions to this IAM role to allow the role access to S3 for read access into the bucket, permissions to cloud watch logs to be able to log the output of the ETL job as it's running and permissions to the Glue service itself, again to be able to run the ETL jobs. Jumping ahead in our role creation, we see the end result. For the purposes of this demonstration, we've added the following policies: a managed policy for S3 bucket access and two inline policies.
 
-The first to allow the Glue service when it runs the ETL job to log out to cloud watch logs. And the second one is to run the ETL process itself. Jumping back into our ETL job setup, we now select the IAM role that we just created. Next we configure the job to run with the proposed script. The script will be auto-generated based on the remainder of the configuration that we apply within this job setup.
+The first to allow the Glue service when it runs the ETL job to log out to cloud watch logs. And the second one is to run the ETL process itself. 
 
-We'll leave the name of our script to be census-job. Next we'll need to choose the S3 path where our script will be stored. In this case we'll store it in cloudacademy-glue-scripts. We also need to specify an S3 temporary directory that may be used by the ETL job as it runs. Here we'll use cloudacademy-glue-temp. We'll leave the final two sections as defaults and proceed by clicking the next button at the bottom of the screen.
+Jumping back into our ETL job setup, we now select the IAM role that we just created. Next we configure the job to run with the proposed script. The script will be auto-generated based on the remainder of the configuration that we apply within this job setup.
 
-The next thing we need to do is setup and specify our input data source. This will be adult_data, the data table that resulted when the crawler ran. Next we specify the target of our ETL script. This will be the table that we created from within Athena: adult_data_clean. Clicking the next button takes us onto the mapping screen where we map the source columns to their target columns. Here there are a number of target columns that we don't need so we will delete these now. We then need to rearrange the mappings between the columns to suit our requirements for our machine learning script.
+<img src="./images/Screenshot_2023-01-22_at_7.54.24_PM.png" width="85%" />
 
-Let's update the mappings now. Column zero in the source table gets mapped to the age column in the target table. Column one in the source table gets mapped to... workclass in the target table. Column three in the source table gets mapped to education in the target table. Column five in the source table gets mapped to relationship in the target table. Column six in the source table gets mapped to occupation in the target table. And column 14 in the source table gets remapped to income_cat in the target table.
+We'll leave the name of our script to be **census-job**. Next we'll need to choose the S3 path where our script will be stored. In this case we'll store it in **cloudacademy-glue-scripts**. 
+
+<img src="./images/Screenshot_2023-01-22_at_7.55.59_PM.png" width="75%" />
+
+<img src="./images/Screenshot_2023-01-22_at_7.56.11_PM.png" width="75%" />
+
+We also need to specify an S3 temporary directory that may be used by the ETL job as it runs. Here we'll use `cloudacademy-glue-temp`. We'll leave the final two sections as defaults and proceed by clicking the next button at the bottom of the screen.
+
+<img src="./images/Screenshot_2023-01-22_at_7.56.46_PM.png" width="75%" />
+<img src="./images/Screenshot_2023-01-22_at_7.56.56_PM.png" width="75%" />
+<img src="./images/Screenshot_2023-01-22_at_7.57.28_PM.png" width="75%" />
+<img src="./images/Screenshot_2023-01-22_at_7.58.17_PM.png" width="75%" />
+
+
+<img src="./images/Screenshot_2023-01-22_at_7.58.49_PM.png" width="75%" />
+<img src="./images/Screenshot_2023-01-22_at_7.59.00_PM.png" width="75%" />
+<img src="./images/Screenshot_2023-01-22_at_7.59.15_PM.png" width="75%" />
+
+The next thing we need to do is setup and specify our input data source. This will be `adult_data`, the data table that resulted when the crawler ran. 
+
+
+Next we specify the target of our ETL script. This will be the table that we created from within Athena: `adult_data_clean`. Clicking the next button takes us onto the mapping screen where we map the source columns to their target columns.
+
+<img src="./images/Screenshot_2023-01-22_at_7.59.45_PM.png" width="75%" />
+<img src="./images/Screenshot_2023-01-22_at_7.59.58_PM.png" width="75%" />
+
+Here there are a number of target columns that we don't need so we will delete these now. We then need to rearrange the mappings between the columns to suit our requirements for our machine learning script.
+
+<img src="./images/Screenshot_2023-01-22_at_8.00.19_PM.png" width="75%" />
+<img src="./images/Screenshot_2023-01-22_at_8.00.37_PM.png" width="75%" />
+<img src="./images/Screenshot_2023-01-22_at_8.01.12_PM.png" width="75%" />
+<img src="./images/Screenshot_2023-01-22_at_8.01.21_PM.png" width="75%" />
+
+Let's update the mappings now. 
+
+* Column zero in the source table gets mapped to the age column in the target table. 
+* Column one in the source table gets mapped to... workclass in the target table. 
+* Column three in the source table gets mapped to education in the target table. 
+* Column five in the source table gets mapped to relationship in the target table. 
+* Column six in the source table gets mapped to occupation in the target table. 
+* Column 14 in the source table gets remapped to income_cat in the target table.
 
 You can go ahead now by completing the mapping by clicking on the next button at the bottom of the screen. This takes us on to the final screen which is the review screen. We can accept our configuration by clicking the finish button. We are now taken into the script screen where AWS Glue has automatically built our pyspark script based on the job ETL configuration that we applied. On the lefthand side, we have a schematic of our ETL job that highlights the basic process.
 
-We can zoom in and out of this to get a better picture of what our ETL job actually is built around. On the right-hand side, we can actually jump into the editor and begin to manipulate the script. Before we run our script, let's jump back over into Amazon Athena and run a query to ensure that our target table is empty. and has no rows or data within it. This is the adult_data_clean.
+<img src="./images/Screenshot_2023-01-22_at_8.01.27_PM.png" width="75%" />
+
+<img src="./images/Screenshot_2023-01-22_at_8.22.30_PM.png" width="75%" />
+
+We can zoom in and out of this to get a better picture of what our ETL job actually is built around. On the right-hand side, we can actually jump into the editor and begin to manipulate the script. Before we run our script, let's jump back over into Amazon Athena and run a query to ensure that our target table is empty. and has no rows or data within it. This is the **adult_data_clean**.
+
+<img src="./images/Screenshot_2023-01-22_at_8.22.20_PM.png" width="75%" />
+<img src="./images/Screenshot_2023-01-22_at_8.22.30_PM.png" width="75%" />
 
 Let's click on the preview table link to run a query to see if there are any rows in our table. And here we can see that the table is indeed empty. There are zero records returned. Jumping back into AWS Glue, we'll save our job and scroll up to the top of the script. We will take a copy of the job_name parameter. This is a parameter that is expected to be passed on.
 
-We click on the run job button, navigate down into the job parameters, paste in the value that we just copied and give it the value job1. We're now ready to run the job. Click the Run job button. This is now running our job, as can be seen by the run job status at the top of the screen, it's in progress. Down on the log screen when the job actually cooks off, we'll start to see logging coming out.
+We click on the run job button, navigate down into the job parameters, paste in the value that we just copied and give it the value job1. We're now ready to run the job. 
+
+<img src="./images/Screenshot_2023-01-22_at_8.22.50_PM.png" width="75%" />
+<img src="./images/Screenshot_2023-01-22_at_8.23.07_PM.png" width="75%" />
+<img src="./images/Screenshot_2023-01-22_at_8.23.20_PM.png" width="75%" />
+
+Click the Run job button. This is now running our job, as can be seen by the run job status at the top of the screen, it's in progress. Down on the log screen when the job actually cooks off, we'll start to see logging coming out.
 
 The job can take a few minutes to kick in. We'll jump ahead in the demonstration to the point where the logging is starting to come out. As can be seen here, the logging is starting to come out. The job is still running and the logging screen will update as the job progresses. We'll fast forward the demonstration near to the point where the ETL job completes.
 
-While we're waiting for the job to fully complete, let's jump over into the S3 console. We'll refresh our bucket to see whether any new data has arrived. Here we can see our new folder: clean.data and within it the outputs of our ETL job. This is a good outcome and shows that our ETL job as configured is working. We'll now jump back into the Glue console to see whether our ETL job has completed. It looks like it's still running, in the meantime let's jump over into the Athena console.
+
+While we're waiting for the job to fully complete, let's jump over into the S3 console. We'll refresh our bucket to see whether any new data has arrived. Here we can see our new folder: clean.data and within it the outputs of our ETL job. 
+
+<img src="./images/Screenshot_2023-01-22_at_8.23.45_PM.png" width="75%" />
+<img src="./images/Screenshot_2023-01-22_at_8.24.08_PM.png" width="75%" />
+
+
+This is a good outcome and shows that our ETL job as configured is working. We'll now jump back into the Glue console to see whether our ETL job has completed. 
+
+
+It looks like it's still running, in the meantime let's jump over into the Athena console.
 
 We'll run a query against our target table to see whether it's being populated, which we know it has based on the results in the S3 bucket. And here we go, we can see the results of our ETL job that has populated our adult_data_clean table. We have the seven correctly named columns that we set up within our mapping.
 
